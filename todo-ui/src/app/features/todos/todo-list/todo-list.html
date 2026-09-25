@@ -1,0 +1,16 @@
+<ul class="todo-list">
+  @for (item of items(); track item.id) {
+    <li class="todo-list__item">
+      <span class="todo-list__title">{{ item.title }}</span>
+
+      <button
+        type="button"
+        class="todo-list__delete"
+        [attr.aria-label]="'Delete ' + item.title"
+        (click)="deleted.emit(item.id)"
+      >
+        Delete
+      </button>
+    </li>
+  }
+</ul>

@@ -1,0 +1,29 @@
+<section class="todo-page">
+  <header class="todo-page__header">
+    <h1 class="todo-page__heading">Todo</h1>
+    @if (store.count() > 0) {
+      <p class="todo-page__count">
+        {{ store.count() }} {{ store.count() === 1 ? 'item' : 'items' }}
+      </p>
+    }
+  </header>
+
+  <app-todo-form [disabled]="store.saving()" (submitted)="add($event)" />
+
+  <div class="todo-page__status" role="alert" aria-live="assertive">
+    @if (store.error(); as message) {
+      <p class="todo-page__error">
+        <span>{{ message }}</span>
+        <button type="button" class="todo-page__retry" (click)="retry()">Retry</button>
+      </p>
+    }
+  </div>
+
+  @if (store.loading()) {
+    <p class="todo-page__hint" aria-live="polite">Loading your todos…</p>
+  } @else if (store.isEmpty()) {
+    <p class="todo-page__hint">Nothing here yet. Add your first todo above.</p>
+  } @else {
+    <app-todo-list [items]="store.items()" (deleted)="remove($event)" />
+  }
+</section>

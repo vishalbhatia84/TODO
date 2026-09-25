@@ -1,0 +1,13 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/todo-api/src/TodoApi/bin/Debug/net10.0
+/todo-api/src/TodoApi/obj
+/todo-api/src/TodoApi/.DS_Store
+/todo-api/tests/TodoApi.IntegrationTests/bin/Debug/net10.0
+/todo-api/tests/TodoApi.IntegrationTests/obj
+/todo-api/tests/TodoApi.UnitTests/bin/Debug/net10.0
+/todo-api/tests/TodoApi.UnitTests/obj
+*.DS_Store
+/todo-api/.vs/TodoApi.slnx

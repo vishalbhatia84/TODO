@@ -1,0 +1,23 @@
+<Project>
+
+  <!--
+    MSBuild stops at the nearest Directory.Build.props, so the one above must
+    be imported by hand: without this line the test projects would silently
+    lose the shared target framework and warning policy.
+  -->
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+
+  <PropertyGroup>
+    <!--
+      CA1707 forbids underscores in member names. It is a rule about public
+      API surface, and test methods are not API: Given_When_Then names are the
+      convention in .NET testing because the runner prints the method name on
+      failure, and "Delete_reports_failure_for_an_unknown_id" diagnoses itself
+      where "DeleteReportsFailureForAnUnknownId" does not.
+
+      Scoped to tests/ so production code is still held to the rule.
+    -->
+    <NoWarn>$(NoWarn);CA1707</NoWarn>
+  </PropertyGroup>
+
+</Project>
